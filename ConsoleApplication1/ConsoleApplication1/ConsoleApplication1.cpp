@@ -35,40 +35,34 @@ void printBoard() {
 }
 
 void removeLine() {
-
-    for (int i = HEIGHT - 1; i >= 0; i--) {
-
+    // Chỉ chạy từ H-2 vì H-1 là viền đáy '#'
+    for (int i = H - 2; i >= 0; i--) {
         bool full = true;
 
-        // kiểm tra dòng đầy
-        for (int j = 0; j < WIDTH; j++) {
-
-            if (board[i][j] == 0) {
+        // Bỏ qua cột 0 và W-1 vì nó là viền '#'
+        for (int j = 1; j < W - 1; j++) {
+            if (board[i][j] == ' ') { // Nếu có khoảng trắng là chưa đầy
                 full = false;
                 break;
             }
         }
 
-        // nếu đầy
+        // Nếu hàng đầy (không có khoảng trắng)
         if (full) {
-
-            // kéo xuống
+            // Kéo các hàng từ trên xuống
             for (int k = i; k > 0; k--) {
-
-                for (int j = 0; j < WIDTH; j++) {
+                for (int j = 1; j < W - 1; j++) {
                     board[k][j] = board[k - 1][j];
                 }
             }
 
-            // dòng đầu = rỗng
-            for (int j = 0; j < WIDTH; j++) {
-                board[0][j] = 0;
+            // Dòng trên cùng (dòng 0) gán lại khoảng trắng
+            for (int j = 1; j < W - 1; j++) {
+                board[0][j] = ' ';
             }
-
-            score += 100;
-
-            // kiểm tra lại dòng hiện tại
-            i++;
+            
+          
+            i++; 
         }
     }
 }
