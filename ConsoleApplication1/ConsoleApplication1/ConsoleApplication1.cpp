@@ -61,12 +61,14 @@ void removeLine() {
                 board[0][j] = ' ';
             }
             
-          
+            // TODO: Kết hợp với biến lineCount của SV5 ở đây
+            // lineCount++;
+
+            // Kiểm tra lại dòng hiện tại (i) sau khi đã kéo xuống
             i++; 
         }
     }
 }
-
 void createTestData() {
 
     // dòng đầy
