@@ -73,6 +73,8 @@ char blocks[][4][4] = {
 };
 
 int x=4,y=0,b=1;
+int speed = 200;
+int lineCount = 0;
 void gotoxy(int x, int y) {
     COORD c = {x, y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
@@ -130,11 +132,14 @@ int main()
         if (canMove(0,1)) y++;
         else {
             block2Board();
+            removeLine();
+            lineCount++;                   
+            if (speed > 50) speed -= 10;   
             x = 5; y = 0; b = rand() % 7;
         }
         block2Board();
         draw();
-        _sleep(200);
+        _sleep(speed);                     
     }
     return 0;
 }
