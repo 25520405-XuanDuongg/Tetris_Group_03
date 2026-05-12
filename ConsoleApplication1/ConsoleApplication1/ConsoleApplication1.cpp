@@ -28,7 +28,8 @@ char blocks[][4][4] = {
 };
 
 int x = 4, y = 0, b = 1;
-
+int speed = 200;  
+int lineCount = 0;   
 void gotoxy(int x, int y) {
     COORD c = {x, y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
@@ -103,10 +104,10 @@ void removeLine() {
             
             // Giữ lại hiệu ứng vẽ để thấy hàng biến mất
             draw();
-            _sleep(100); 
-
-            // SV2 logic: Kiểm tra lại chính dòng này (phòng trường hợp ăn 2-3 hàng)
-            i++; 
+                _sleep(100);
+                lineCount++;                  
+                if (speed > 50) speed -= 10;   
+                i++;
         }
     }
 }
@@ -139,7 +140,7 @@ int main()
         draw();
         
         // Tốc độ được giữ nguyên ở mức 200ms ban đầu (chưa có code SV5)
-        _sleep(200); 
+        _sleep(speed); 
     }
     return 0;
 }
