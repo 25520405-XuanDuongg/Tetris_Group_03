@@ -73,6 +73,9 @@ char blocks[][4][4] = {
 };
 
 int x=4,y=0,b=1;
+int speed = 200;     // ← SV5
+int lineCount = 0;   // ← SV5
+
 void gotoxy(int x, int y) {
     COORD c = {x, y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
@@ -112,6 +115,10 @@ bool canMove(int dx, int dy){
             }
     return true;
 }
+
+// SV2 sẽ thêm removeLine() ở đây
+// SV5 đã chuẩn bị sẵn lineCount và speed để dùng trong removeLine()
+
 int main()
 {
     srand(time(0));
@@ -130,11 +137,12 @@ int main()
         if (canMove(0,1)) y++;
         else {
             block2Board();
+            // SV2 sẽ thêm removeLine() ở đây
             x = 5; y = 0; b = rand() % 7;
         }
         block2Board();
         draw();
-        _sleep(200);
+        _sleep(speed);  // ← SV5: đổi từ _sleep(200)
     }
     return 0;
 }
