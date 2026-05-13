@@ -164,6 +164,41 @@ bool canMove(int dx, int dy){
             }
     return true;
 }
+bool canRotate(char temp[4][4]){
+    for (int i = 0 ; i < 4 ; i++)
+        for (int j = 0 ; j < 4 ; j++)
+            if (temp[i][j] != ' '){
+
+                int tx = x + j;
+                int ty = y + i;
+
+                if (tx < 1 || tx >= W-1 || ty >= H-1)
+                    return false;
+
+                if (board[ty][tx] != ' ')
+                    return false;
+            }
+
+    return true;
+}
+
+void rotateBlock(){
+
+    char temp[4][4];
+
+
+    for (int i = 0 ; i < 4 ; i++)
+        for (int j = 0 ; j < 4 ; j++)
+            temp[j][3 - i] = currentBlock[i][j];
+
+
+    if (canRotate(temp)){
+
+        for (int i = 0 ; i < 4 ; i++)
+            for (int j = 0 ; j < 4 ; j++)
+                currentBlock[i][j] = temp[i][j];
+    }
+}
 int main()
 {
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -187,6 +222,9 @@ SetConsoleCursorInfo(hOut, &cursor);
             if (c=='d' && canMove(1,0) ) x++;
             if (c=='x' && canMove(0,1))  y++;
             if (c=='q') break;
+            if (c=='w'){
+                rotateBlock();
+            }
         }
         if (canMove(0,1)) y++;
         else {
