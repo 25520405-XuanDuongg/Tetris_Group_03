@@ -223,7 +223,6 @@ SetConsoleCursorInfo(hOut, &cursor);
             if (c=='x' && canMove(0,1))  y++;
             if (c=='q') break;
             if (c=='w'){
-                boardDelBlock();
                 rotateBlock();
             }
         }
