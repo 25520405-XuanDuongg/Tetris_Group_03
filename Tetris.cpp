@@ -186,17 +186,17 @@ void rotateBlock(){
 
     char temp[4][4];
 
-    // xoay 90 độ
+
     for (int i = 0 ; i < 4 ; i++)
         for (int j = 0 ; j < 4 ; j++)
-            temp[j][3 - i] = blocks[b][i][j];
+            temp[j][3 - i] = currentBlock[i][j];
 
-    // kiểm tra có xoay được không
+
     if (canRotate(temp)){
 
         for (int i = 0 ; i < 4 ; i++)
             for (int j = 0 ; j < 4 ; j++)
-                blocks[b][i][j] = temp[i][j];
+                currentBlock[i][j] = temp[i][j];
     }
 }
 int main()
