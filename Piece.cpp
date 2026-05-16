@@ -38,3 +38,58 @@ void TPiece::rotate() {
     // Gọi hàm xoay mặc định của class cha
     Piece::rotate();
 }
+// --- KHỐI I ---
+IPiece::IPiece(int startX, int startY) : Piece(startX, startY), isVertical(true) {
+    // Khởi tạo khối I nằm dọc
+    shape[0][1] = 'I'; 
+    shape[1][1] = 'I'; 
+    shape[2][1] = 'I'; 
+    shape[3][1] = 'I';
+}
+
+// Xoay khối I (Đảo qua lại giữa dọc và ngang để không bị lệch khỏi ma trận)
+void IPiece::rotate() {
+    // Xóa hình dáng cũ
+    for(int i = 0; i < PIECE_SIZE; ++i) {
+        for(int j = 0; j < PIECE_SIZE; ++j) {
+            shape[i][j] = '.';
+        }
+    }
+
+    if (isVertical) {
+        // Chuyển sang nằm ngang
+        shape[1][0] = 'I'; shape[1][1] = 'I'; shape[1][2] = 'I'; shape[1][3] = 'I';
+    } else {
+        // Chuyển về nằm dọc
+        shape[0][1] = 'I'; shape[1][1] = 'I'; shape[2][1] = 'I'; shape[3][1] = 'I';
+    }
+    isVertical = !isVertical; // Đổi trạng thái
+}
+
+// --- KHỐI J ---
+JPiece::JPiece(int startX, int startY) : Piece(startX, startY) {
+    shape[0][1] = 'J';
+    shape[1][1] = 'J';
+    shape[2][1] = 'J';
+    shape[2][0] = 'J'; // Móc của chữ J
+}
+
+// --- KHỐI L ---
+LPiece::LPiece(int startX, int startY) : Piece(startX, startY) {
+    shape[0][1] = 'L';
+    shape[1][1] = 'L';
+    shape[2][1] = 'L';
+    shape[2][2] = 'L'; // Móc của chữ L
+}
+
+// --- KHỐI S ---
+SPiece::SPiece(int startX, int startY) : Piece(startX, startY) {
+    shape[1][1] = 'S'; shape[1][2] = 'S';
+    shape[2][0] = 'S'; shape[2][1] = 'S';
+}
+
+// --- KHỐI Z ---
+ZPiece::ZPiece(int startX, int startY) : Piece(startX, startY) {
+    shape[1][0] = 'Z'; shape[1][1] = 'Z';
+    shape[2][1] = 'Z'; shape[2][2] = 'Z';
+}

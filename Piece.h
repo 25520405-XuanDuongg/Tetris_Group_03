@@ -45,3 +45,39 @@ public:
 };
 
 // (Khai báo tương tự cho IPiece, JPiece, LPiece, SPiece, ZPiece...)
+// Khối I (Đường thẳng)
+class IPiece : public Piece {
+private:
+    bool isVertical; // Trạng thái để xử lý xoay riêng cho khối I
+public:
+    IPiece(int startX, int startY);
+    void rotate() override; // Ghi đè để xoay khối I mượt hơn, không bị lệch tâm
+};
+
+// Khối J
+class JPiece : public Piece {
+public:
+    JPiece(int startX, int startY);
+    void rotate() override { Piece::rotate(); }
+};
+
+// Khối L
+class LPiece : public Piece {
+public:
+    LPiece(int startX, int startY);
+    void rotate() override { Piece::rotate(); }
+};
+
+// Khối S
+class SPiece : public Piece {
+public:
+    SPiece(int startX, int startY);
+    void rotate() override { Piece::rotate(); }
+};
+
+// Khối Z
+class ZPiece : public Piece {
+public:
+    ZPiece(int startX, int startY);
+    void rotate() override { Piece::rotate(); }
+};
