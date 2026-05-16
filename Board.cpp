@@ -110,7 +110,21 @@ void removeLine() {
         }
     }
 }
+// Logic mẫu khi bấm phím Xoay (Mũi tên LÊN)
+void handleRotation(Piece* currentPiece) {
+    // 1. Cứ cho xoay trước
+    currentPiece->rotate();
 
+    // 2. Viết 1 hàm check xem vị trí mới có bị đâm vào tường (Wall) 
+    // hoặc đâm vào khối cũ dưới đáy không.
+    if (!isValidPosition(currentPiece)) {
+        // 3. Nếu đụng, phải xoay ngược lại 3 lần (tương đương 270 độ) 
+        // để đưa nó về vị trí cũ (Undo rotation).
+        currentPiece->rotate();
+        currentPiece->rotate();
+        currentPiece->rotate();
+    }
+}
 int main()
 {
     srand(time(0));
